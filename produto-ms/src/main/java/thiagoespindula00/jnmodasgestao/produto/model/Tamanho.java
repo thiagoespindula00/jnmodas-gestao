@@ -1,4 +1,4 @@
-package thiagoespindula00.model;
+package thiagoespindula00.jnmodasgestao.produto.model;
 
 public enum Tamanho {
     P,
