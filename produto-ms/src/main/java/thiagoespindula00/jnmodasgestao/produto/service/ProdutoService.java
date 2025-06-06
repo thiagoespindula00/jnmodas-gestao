@@ -2,6 +2,8 @@ package thiagoespindula00.jnmodasgestao.produto.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import thiagoespindula00.jnmodasgestao.produto.dto.ProdutoRequestDTO;
 import thiagoespindula00.jnmodasgestao.produto.dto.ProdutoDetalhesDTO;
@@ -41,5 +43,17 @@ public class ProdutoService {
     public void deletar(Long id) {
         Produto produto = repository.findById(id).orElseThrow(EntityNotFoundException::new);
         repository.delete(produto);
+    }
+
+    public Page<ProdutoDetalhesDTO> listar(Pageable pageable) {
+        return repository
+                .findAll(pageable)
+                .map(ProdutoDetalhesDTO::fromEntity);
+    }
+
+    public ProdutoDetalhesDTO detalhar(Long id) {
+        Produto produto = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+
+        return ProdutoDetalhesDTO.fromEntity(produto);
     }
 }

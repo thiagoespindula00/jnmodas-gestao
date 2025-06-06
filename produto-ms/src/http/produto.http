@@ -26,3 +26,9 @@ Content-Type: application/json
 
 ### Deletar um produto
 DELETE http://localhost:8080/produtos/10
+
+### Listar todos os produto paginado
+GET http://localhost:8080/produtos
+
+### Detalhar um produto
+GET http://localhost:8080/produtos/8
