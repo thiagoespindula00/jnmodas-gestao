@@ -23,6 +23,7 @@
     </developers>
     <modules>
         <module>produto-ms</module>
+        <module>cliente-ms</module>
     </modules>
     <scm>
         <connection/>
