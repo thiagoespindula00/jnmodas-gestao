@@ -37,4 +37,9 @@ public class ProdutoService {
         produto.setCampos(produtoRequestDTO);
         repository.save(produto);
     }
+
+    public void deletar(Long id) {
+        Produto produto = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        repository.delete(produto);
+    }
 }

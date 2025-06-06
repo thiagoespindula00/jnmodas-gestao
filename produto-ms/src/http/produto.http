@@ -23,3 +23,6 @@ Content-Type: application/json
   "categoria": "ADULTO",
   "departamento": "FEMININO"
 }
+
+### Deletar um produto
+DELETE http://localhost:8080/produtos/10
