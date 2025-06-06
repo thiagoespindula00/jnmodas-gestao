@@ -33,16 +33,20 @@ public class Produto {
     }
 
     private Produto(ProdutoRequestDTO produtoRequestDTO) {
+        this.setCampos(produtoRequestDTO);
+    }
+
+    public static Produto fromDTO(ProdutoRequestDTO produtoRequestDTO) {
+        return new Produto(produtoRequestDTO);
+    }
+
+    public void setCampos(ProdutoRequestDTO produtoRequestDTO) {
         this.codigo = produtoRequestDTO.codigo();
         this.descricao = produtoRequestDTO.descricao();
         this.preco = produtoRequestDTO.preco();
         this.tamanho = produtoRequestDTO.tamanho();
         this.categoria = produtoRequestDTO.categoria();
         this.departamento = produtoRequestDTO.departamento();
-    }
-
-    public static Produto fromDTO(ProdutoRequestDTO produtoRequestDTO) {
-        return new Produto(produtoRequestDTO);
     }
 
     public Long getId() {

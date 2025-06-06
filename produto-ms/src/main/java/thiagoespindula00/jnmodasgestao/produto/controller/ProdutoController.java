@@ -3,10 +3,7 @@ package thiagoespindula00.jnmodasgestao.produto.controller;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import thiagoespindula00.jnmodasgestao.produto.dto.ProdutoRequestDTO;
 import thiagoespindula00.jnmodasgestao.produto.dto.ProdutoDetalhesDTO;
@@ -22,8 +19,8 @@ public class ProdutoController {
     private UriComponentsBuilder uriBuilder;
 
     @PostMapping
-    public ResponseEntity cadastrar(@RequestBody @Valid ProdutoRequestDTO produtoRequestDTO) {
-        ProdutoDetalhesDTO produtoCadastrado = produtoService.salvar(produtoRequestDTO);
+    public ResponseEntity<ProdutoDetalhesDTO> cadastrar(@RequestBody @Valid ProdutoRequestDTO produtoRequestDTO) {
+        ProdutoDetalhesDTO produtoCadastrado = produtoService.cadastrar(produtoRequestDTO);
 
         var location = uriBuilder
                 .path("produtos/{id}")
@@ -31,5 +28,12 @@ public class ProdutoController {
                 .toUri();
 
         return ResponseEntity.created(location).body(produtoCadastrado);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid ProdutoRequestDTO produtoRequestDTO) {
+        produtoService.atualizar(id, produtoRequestDTO);
+
+        return ResponseEntity.noContent().build();
     }
 }

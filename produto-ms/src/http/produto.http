@@ -10,3 +10,16 @@ Content-Type: application/json
   "categoria": "INFANTIL",
   "departamento": "MASCULINO"
 }
+
+### Atualizar um produto
+PUT http://localhost:8080/produtos/8
+Content-Type: application/json
+
+{
+  "codigo": "123yyy",
+  "descricao": "Calça jeans",
+  "preco": 119.9,
+  "tamanho": "M",
+  "categoria": "ADULTO",
+  "departamento": "FEMININO"
+}
