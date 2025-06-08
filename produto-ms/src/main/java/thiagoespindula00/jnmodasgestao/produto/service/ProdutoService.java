@@ -26,7 +26,6 @@ public class ProdutoService {
         validarDadosInformados(produtoRequestDTO);
 
         Produto produto = repository.save(Produto.fromDTO(produtoRequestDTO));
-        System.out.println(produto);
         return ProdutoDetalhesDTO.fromEntity(produto);
     }
 
