@@ -3,6 +3,8 @@ package thiagoespindula00.jnmodasgestao.cliente.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import thiagoespindula00.jnmodasgestao.cliente.dto.ClienteDetalhesDTO;
 import thiagoespindula00.jnmodasgestao.cliente.dto.ClienteRequestDTO;
@@ -55,5 +57,16 @@ public class ClienteService {
     public void deletar(Long id) {
         Cliente cliente = repository.findById(id).orElseThrow(EntityNotFoundException::new);
         repository.delete(cliente);
+    }
+
+    public Page<ClienteDetalhesDTO> listar(Pageable pageable) {
+        return repository
+                .findAll(pageable)
+                .map(ClienteDetalhesDTO::fromEntity);
+    }
+
+    public ClienteDetalhesDTO detalhar(Long id) {
+        Cliente cliente = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return ClienteDetalhesDTO.fromEntity(cliente);
     }
 }

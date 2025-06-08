@@ -42,3 +42,9 @@ Content-Type: application/json
 
 ### Deletar um cliente
 DELETE http://localhost:8080/clientes/7
+
+### Listar todos os clientes paginado
+GET http://localhost:8080/clientes
+
+### Detalhar um cliente
+GET http://localhost:8080/clientes/3
