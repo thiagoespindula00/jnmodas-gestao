@@ -50,4 +50,10 @@ public class ClienteService {
         cliente.setCampos(clienteRequestDTO);
         repository.save(cliente);
     }
+
+    @Transactional
+    public void deletar(Long id) {
+        Cliente cliente = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        repository.delete(cliente);
+    }
 }

@@ -39,3 +39,6 @@ Content-Type: application/json
     "pais": "Brasil"
   }
 }
+
+### Deletar um cliente
+DELETE http://localhost:8080/clientes/7
