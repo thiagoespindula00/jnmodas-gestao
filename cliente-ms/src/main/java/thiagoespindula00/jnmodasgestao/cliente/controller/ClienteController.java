@@ -3,10 +3,7 @@ package thiagoespindula00.jnmodasgestao.cliente.controller;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import thiagoespindula00.jnmodasgestao.cliente.dto.ClienteDetalhesDTO;
 import thiagoespindula00.jnmodasgestao.cliente.dto.ClienteRequestDTO;
@@ -31,5 +28,12 @@ public class ClienteController {
                 .toUri();
 
         return ResponseEntity.created(location).body(clienteCadastrado);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
+        clienteService.atualizar(id, clienteRequestDTO);
+
+        return ResponseEntity.noContent().build();
     }
 }

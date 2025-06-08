@@ -18,3 +18,24 @@ Content-Type: application/json
     "pais": "Brasil"
   }
 }
+
+### Atualizar um cliente
+PUT http://localhost:8080/clientes/7
+Content-Type: application/json
+
+{
+  "cpf": "58602874022",
+  "nome": "Terezinha",
+  "email": "terezinha@email.com",
+  "telefone": "(47)9 123456-47",
+  "endereco": {
+    "cep": "12345678",
+    "cidade": "Blumenau",
+    "rua": "7 de setembro",
+    "numero": "789C",
+    "complemento": "",
+    "bairro": "Centro",
+    "estado": "SC",
+    "pais": "Brasil"
+  }
+}
