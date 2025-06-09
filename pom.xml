@@ -24,6 +24,7 @@
     <modules>
         <module>produto-ms</module>
         <module>cliente-ms</module>
+        <module>fornecedor-ms</module>
     </modules>
     <scm>
         <connection/>
