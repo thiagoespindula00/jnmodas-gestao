@@ -2,6 +2,8 @@ package thiagoespindula00.jnmodasgestao.fornecedor.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import thiagoespindula00.jnmodasgestao.fornecedor.dto.FornecedorDetalhesDTO;
@@ -56,5 +58,16 @@ public class FornecedorService {
     public void deletar(Long id) {
         Fornecedor fornecedor = repository.findById(id).orElseThrow(EntityNotFoundException::new);
         repository.delete(fornecedor);
+    }
+
+    public Page<FornecedorDetalhesDTO> listar(Pageable pageable) {
+        return repository
+                .findAll(pageable)
+                .map(FornecedorDetalhesDTO::fromEntity);
+    }
+
+    public FornecedorDetalhesDTO detalhar(Long id) {
+        Fornecedor fornecedor = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return FornecedorDetalhesDTO.fromEntity(fornecedor);
     }
 }

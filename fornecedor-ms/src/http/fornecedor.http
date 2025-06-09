@@ -42,3 +42,9 @@ Content-Type: application/json
 
 ### Deletar um fornecedor
 DELETE http://localhost:8080/fornecedores/1
+
+### Listar todos os fornecedores paginado
+GET http://localhost:8080/fornecedores
+
+### Detalhar um cliente
+GET http://localhost:8080/fornecedores/2
