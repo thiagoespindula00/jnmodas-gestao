@@ -1,0 +1,37 @@
+package thiagoespindula00.jnmodasgestao.fornecedor.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import thiagoespindula00.jnmodasgestao.fornecedor.dto.FornecedorDetalhesDTO;
+import thiagoespindula00.jnmodasgestao.fornecedor.dto.FornecedorRequestDTO;
+import thiagoespindula00.jnmodasgestao.fornecedor.model.Fornecedor;
+import thiagoespindula00.jnmodasgestao.fornecedor.repository.FornecedorRepository;
+import thiagoespindula00.jnmodasgestao.fornecedor.trata_erros.ValidacaoException;
+
+@Service
+public class FornecedorService {
+    @Autowired
+    private FornecedorRepository repository;
+
+    private void validaCnpj(String cnpj) {
+        if (repository.existsByCnpj(cnpj)) {
+            throw new ValidacaoException("CNPJ já cadastrado");
+        }
+    }
+
+    private void validaEmail(String email) {
+        if (repository.existsByEmail(email)) {
+            throw new ValidacaoException("E-mail já cadastrado");
+        }
+    }
+
+    @Transactional
+    public FornecedorDetalhesDTO cadastrar(FornecedorRequestDTO fornecedorRequestDTO) {
+        validaCnpj(fornecedorRequestDTO.cnpj());
+        validaEmail(fornecedorRequestDTO.email());
+
+        Fornecedor fornecedor = repository.save(Fornecedor.fromDto(fornecedorRequestDTO));
+        return FornecedorDetalhesDTO.fromEntity(fornecedor);
+    }
+}

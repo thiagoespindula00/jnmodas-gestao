@@ -1,0 +1,14 @@
+package thiagoespindula00.jnmodasgestao.fornecedor.configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.util.UriComponentsBuilder;
+
+@Configuration
+public class AutoWiredConfiguration {
+
+    @Bean
+    public UriComponentsBuilder uriComponentsBuilder() {
+        return UriComponentsBuilder.newInstance();
+    }
+}

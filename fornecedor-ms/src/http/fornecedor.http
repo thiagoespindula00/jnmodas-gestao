@@ -1,0 +1,20 @@
+### Criar um novo fornecedor
+POST http://localhost:8080/fornecedores
+Content-Type: application/json
+
+{
+  "cnpj": "78495449000165",
+  "nome": "João",
+  "email": "joão@email.com",
+  "telefone": "(47)9 123456-47",
+  "endereco": {
+    "cep": "12345678",
+    "cidade": "Blumenau",
+    "rua": "7 de setembro",
+    "numero": "789C",
+    "complemento": "",
+    "bairro": "Centro",
+    "estado": "SC",
+    "pais": "Brasil"
+  }
+}
