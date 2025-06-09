@@ -39,3 +39,6 @@ Content-Type: application/json
     "pais": "Brasil"
   }
 }
+
+### Deletar um fornecedor
+DELETE http://localhost:8080/fornecedores/1

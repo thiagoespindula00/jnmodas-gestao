@@ -51,4 +51,10 @@ public class FornecedorService {
         fornecedor.setCampos(fornecedorRequestDTO);
         repository.save(fornecedor);
     }
+
+    @Transactional
+    public void deletar(Long id) {
+        Fornecedor fornecedor = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        repository.delete(fornecedor);
+    }
 }
