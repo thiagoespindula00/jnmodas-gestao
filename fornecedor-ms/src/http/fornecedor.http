@@ -3,9 +3,30 @@ POST http://localhost:8080/fornecedores
 Content-Type: application/json
 
 {
-  "cnpj": "78495449000165",
-  "nome": "João",
-  "email": "joão@email.com",
+  "cnpj": "24182118000146",
+  "nome": "Pedro",
+  "email": "pedro@email.com",
+  "telefone": "(47)9 123456-47",
+  "endereco": {
+    "cep": "12345678",
+    "cidade": "Blumenau",
+    "rua": "XV de Novembro",
+    "numero": "987A",
+    "complemento": "",
+    "bairro": "Centro",
+    "estado": "SC",
+    "pais": "Brasil"
+  }
+}
+
+### Atualizar um fornecedor
+PUT http://localhost:8080/fornecedores/1
+Content-Type: application/json
+
+{
+  "cnpj": "75931335000122",
+  "nome": "João Vitor",
+  "email": "joao.vitor@email.com",
   "telefone": "(47)9 123456-47",
   "endereco": {
     "cep": "12345678",

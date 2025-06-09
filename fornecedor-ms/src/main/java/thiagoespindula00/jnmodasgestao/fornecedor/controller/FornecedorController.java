@@ -3,10 +3,7 @@ package thiagoespindula00.jnmodasgestao.fornecedor.controller;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import thiagoespindula00.jnmodasgestao.fornecedor.dto.FornecedorDetalhesDTO;
 import thiagoespindula00.jnmodasgestao.fornecedor.dto.FornecedorRequestDTO;
@@ -32,4 +29,12 @@ public class FornecedorController {
 
         return ResponseEntity.created(location).body(fornecedorCadastrado);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid FornecedorRequestDTO fornecedorRequestDTO) {
+        service.atualizar(id, fornecedorRequestDTO);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }

@@ -28,15 +28,19 @@ public class Fornecedor {
     public Fornecedor() {}
 
     private Fornecedor(FornecedorRequestDTO fornecedorRequestDTO) {
+        this.setCampos(fornecedorRequestDTO);
+    }
+
+    public static Fornecedor fromDto(FornecedorRequestDTO fornecedorRequestDTO) {
+        return new Fornecedor(fornecedorRequestDTO);
+    }
+
+    public void setCampos(FornecedorRequestDTO fornecedorRequestDTO) {
         this.cnpj = fornecedorRequestDTO.cnpj();
         this.nome = fornecedorRequestDTO.nome();
         this.email = fornecedorRequestDTO.email();
         this.telefone = fornecedorRequestDTO.telefone();
         this.endereco = Endereco.fromDto(fornecedorRequestDTO.endereco());
-    }
-
-    public static Fornecedor fromDto(FornecedorRequestDTO fornecedorRequestDTO) {
-        return new Fornecedor(fornecedorRequestDTO);
     }
 
     public Long getId() {

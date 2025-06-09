@@ -1,5 +1,6 @@
 package thiagoespindula00.jnmodasgestao.fornecedor.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,5 +34,21 @@ public class FornecedorService {
 
         Fornecedor fornecedor = repository.save(Fornecedor.fromDto(fornecedorRequestDTO));
         return FornecedorDetalhesDTO.fromEntity(fornecedor);
+    }
+
+    @Transactional
+    public void atualizar(Long id, FornecedorRequestDTO fornecedorRequestDTO) {
+        Fornecedor fornecedor = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+
+        if (!fornecedor.getCnpj().equals(fornecedorRequestDTO.cnpj())) {
+            validaCnpj(fornecedorRequestDTO.cnpj());
+        }
+
+        if (!fornecedor.getEmail().equals(fornecedorRequestDTO.email())) {
+            validaEmail(fornecedorRequestDTO.email());
+        }
+
+        fornecedor.setCampos(fornecedorRequestDTO);
+        repository.save(fornecedor);
     }
 }
