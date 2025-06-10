@@ -14,3 +14,13 @@ services:
       context: ./discovery-server
     ports:
       - 8761:8761
+
+  cliente-ms:
+    build:
+      context: ./cliente-ms
+    environment:
+      - DB_HOST_NAME=postgresql
+      - EUREKA_HOST_NAME=discovery-server
+    depends_on:
+      - discovery-server
+      - postgresql
