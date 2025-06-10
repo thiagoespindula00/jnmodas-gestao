@@ -8,3 +8,9 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
+
+  discovery-server:
+    build:
+      context: ./discovery-server
+    ports:
+      - 8761:8761
