@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: cliente-ms
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/cliente-ms/**
+              filters:
+                - StripPrefix=2
+
+            - id: fornecedor-ms
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/fornecedor-ms/**
+              filters:
+                - StripPrefix=2
+
+            - id: produto-ms
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/produto-ms/**
+              filters:
+                - StripPrefix=2
