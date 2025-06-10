@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   application:
     name: gateway
@@ -7,21 +9,21 @@ spring:
         webflux:
           routes:
             - id: cliente-ms
-              uri: http://localhost:8081
+              uri: lb://cliente-ms
               predicates:
                 - Path=/api/cliente-ms/**
               filters:
                 - StripPrefix=2
 
             - id: fornecedor-ms
-              uri: http://localhost:8082
+              uri: lb://fornecedor-ms
               predicates:
                 - Path=/api/fornecedor-ms/**
               filters:
                 - StripPrefix=2
 
             - id: produto-ms
-              uri: http://localhost:8083
+              uri: lb://produto-ms
               predicates:
                 - Path=/api/produto-ms/**
               filters:

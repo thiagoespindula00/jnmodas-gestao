@@ -2,6 +2,7 @@ package thiagoespindula00.jnmodasgestao.cliente.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -55,6 +56,11 @@ public class ClienteController {
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDetalhesDTO> detalhar(@PathVariable Long id) {
         return ResponseEntity.ok(clienteService.detalhar(id));
+    }
+
+    @GetMapping("/instancia")
+    public String instancia(@Value("${server.port}") String porta) {
+        return "Instancia do Servidor: " + porta;
     }
 
 }
