@@ -2,7 +2,7 @@ services:
   postgresql:
     image: postgres:15
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -13,7 +13,7 @@ services:
     build:
       context: ./discovery-server
     ports:
-      - 8761:8761
+      - "8761:8761"
 
   cliente-ms:
     build:
@@ -44,3 +44,16 @@ services:
     depends_on:
       - discovery-server
       - postgresql
+
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_HOST_NAME=discovery-server
+    depends_on:
+      - cliente-ms
+      - fornecedor-ms
+      - produto-ms
+      - discovery-server
