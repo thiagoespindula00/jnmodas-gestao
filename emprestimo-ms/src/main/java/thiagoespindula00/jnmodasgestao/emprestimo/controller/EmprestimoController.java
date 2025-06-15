@@ -47,6 +47,13 @@ public class EmprestimoController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}/devolucao")
+    public ResponseEntity<?> devolucao(@PathVariable Long id) {
+        service.realizarDevolucao(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping
     public ResponseEntity<Page<EmprestimoDetalhesDTO>> listar(@PageableDefault(size = 10) Pageable pageable) {
         return ResponseEntity.ok(service.listar(pageable));

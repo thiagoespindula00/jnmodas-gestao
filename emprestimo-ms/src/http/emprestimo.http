@@ -3,15 +3,23 @@ POST http://localhost:8084/emprestimos
 Content-Type: application/json
 
 {
-  "clienteId": 2,
+  "clienteId": 1,
   "itens": [
     {
-      "produtoId": 4,
-      "quantidade": 4
+      "produtoId": 1,
+      "quantidade": 15
     },
     {
-      "produtoId": 3,
+      "produtoId": 10,
       "quantidade": 3
+    },
+    {
+      "produtoId": 7,
+      "quantidade": 5
+    },
+    {
+      "produtoId": 6,
+      "quantidade": 1
     }
   ]
 }
@@ -34,6 +42,9 @@ Content-Type: application/json
   ]
 }
 
+### Realizar devolução de um empréstimo
+PUT http://localhost:8084/emprestimos/4/devolucao
+
 ### Deletar um cliente
 DELETE http://localhost:8084/emprestimos/2
 
@@ -41,4 +52,4 @@ DELETE http://localhost:8084/emprestimos/2
 GET http://localhost:8084/emprestimos
 
 ### Detalhar um cliente
-GET http://localhost:8084/emprestimos/3
+GET http://localhost:8084/emprestimos/4

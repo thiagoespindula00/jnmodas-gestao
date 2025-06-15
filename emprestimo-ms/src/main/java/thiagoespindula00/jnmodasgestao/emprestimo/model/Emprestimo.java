@@ -58,6 +58,11 @@ public class Emprestimo {
         }
     }
 
+    public void realizarDevolucao() {
+        this.dataDevolucao = LocalDate.now();
+        this.status = StatusEmprestimo.DEVOLVIDO;
+    }
+
     public Long getId() {
         return id;
     }

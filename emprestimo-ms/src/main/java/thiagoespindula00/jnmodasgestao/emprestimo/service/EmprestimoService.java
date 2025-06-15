@@ -10,6 +10,7 @@ import thiagoespindula00.jnmodasgestao.emprestimo.dto.EmprestimoDetalhesDTO;
 import thiagoespindula00.jnmodasgestao.emprestimo.dto.EmprestimoRequestDTO;
 import thiagoespindula00.jnmodasgestao.emprestimo.model.Emprestimo;
 import thiagoespindula00.jnmodasgestao.emprestimo.repository.EmprestimoRepository;
+import thiagoespindula00.jnmodasgestao.emprestimo.trata_erros.ValidacaoException;
 
 @Service
 public class EmprestimoService {
@@ -35,6 +36,18 @@ public class EmprestimoService {
     public void deletar(Long id) {
         Emprestimo emprestimo = repository.findById(id).orElseThrow(EntityNotFoundException::new);
         repository.delete(emprestimo);
+    }
+
+    @Transactional
+    public void realizarDevolucao(Long id) {
+        Emprestimo emprestimo = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+
+        if (emprestimo.getDataDevolucao() != null) {
+            throw new ValidacaoException("A devolução desse empréstimo já foi realizada");
+        }
+
+        emprestimo.realizarDevolucao();
+        repository.save(emprestimo);
     }
 
     public Page<EmprestimoDetalhesDTO> listar(Pageable pageable) {
