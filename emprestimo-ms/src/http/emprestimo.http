@@ -33,3 +33,6 @@ Content-Type: application/json
     }
   ]
 }
+
+### Deletar um cliente
+DELETE http://localhost:8084/emprestimos/2

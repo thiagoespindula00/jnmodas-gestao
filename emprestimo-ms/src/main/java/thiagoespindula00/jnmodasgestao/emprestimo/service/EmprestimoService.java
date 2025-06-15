@@ -28,4 +28,10 @@ public class EmprestimoService {
         emprestimo.setCampos(emprestimoRequestDTO);
         repository.save(emprestimo);
     }
+
+    @Transactional
+    public void deletar(Long id) {
+        Emprestimo emprestimo = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        repository.delete(emprestimo);
+    }
 }
