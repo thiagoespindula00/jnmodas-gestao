@@ -9,6 +9,12 @@ spring:
     url: jdbc:postgresql://${DB_HOST_NAME:localhost}:5432/jnmodas_gestao_emprestimo_ms_db
     username: postgres
     password: postgres
+  cloud:
+    openfeign:
+      client:
+        config:
+          cliente:
+            url: http://localhost:8080/api/cliente-ms/clientes
 
 eureka:
   client:

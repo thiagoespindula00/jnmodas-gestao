@@ -3,7 +3,7 @@ POST http://localhost:8084/emprestimos
 Content-Type: application/json
 
 {
-  "clienteId": 1,
+  "clienteId": 2,
   "itens": [
     {
       "produtoId": 1,

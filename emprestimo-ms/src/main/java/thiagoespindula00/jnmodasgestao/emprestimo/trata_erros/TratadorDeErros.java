@@ -1,5 +1,6 @@
 package thiagoespindula00.jnmodasgestao.emprestimo.trata_erros;
 
+import feign.FeignException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,12 @@ public class TratadorDeErros {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<?> trataErroEntidadeNaoEncontrada(EntityNotFoundException exception) {
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(FeignException.class)
+    public ResponseEntity<?> trataErroFeign(FeignException exception) {
+        System.out.println(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body("Serviço de cliente temporariamente indisponível.");
     }
 }
