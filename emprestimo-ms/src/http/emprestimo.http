@@ -36,3 +36,9 @@ Content-Type: application/json
 
 ### Deletar um cliente
 DELETE http://localhost:8084/emprestimos/2
+
+### Listar todos os clientes paginado
+GET http://localhost:8084/emprestimos
+
+### Detalhar um cliente
+GET http://localhost:8084/emprestimos/3
