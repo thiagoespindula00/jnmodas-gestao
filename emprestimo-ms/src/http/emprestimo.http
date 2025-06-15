@@ -1,0 +1,35 @@
+### Criar um novo emprestimo
+POST http://localhost:8084/emprestimos
+Content-Type: application/json
+
+{
+  "clienteId": 2,
+  "itens": [
+    {
+      "produtoId": 4,
+      "quantidade": 4
+    },
+    {
+      "produtoId": 3,
+      "quantidade": 3
+    }
+  ]
+}
+
+### Atualizar um emprestimo
+PUT http://localhost:8084/emprestimos/2
+Content-Type: application/json
+
+{
+  "clienteId": 4,
+  "itens": [
+    {
+      "produtoId": 4,
+      "quantidade": 4
+    },
+    {
+      "produtoId": 1,
+      "quantidade": 15
+    }
+  ]
+}

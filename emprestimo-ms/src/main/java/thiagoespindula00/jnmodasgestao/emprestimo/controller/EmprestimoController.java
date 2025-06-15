@@ -3,10 +3,7 @@ package thiagoespindula00.jnmodasgestao.emprestimo.controller;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import thiagoespindula00.jnmodasgestao.emprestimo.dto.EmprestimoDetalhesDTO;
 import thiagoespindula00.jnmodasgestao.emprestimo.dto.EmprestimoRequestDTO;
@@ -31,5 +28,12 @@ public class EmprestimoController {
                 .toUri();
 
         return ResponseEntity.created(location).body(emprestimoCadastrado);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid EmprestimoRequestDTO emprestimoRequestDTO) {
+        service.atualizar(id, emprestimoRequestDTO);
+
+        return ResponseEntity.noContent().build();
     }
 }

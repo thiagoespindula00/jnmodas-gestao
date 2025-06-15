@@ -2,6 +2,7 @@ package thiagoespindula00.jnmodasgestao.emprestimo.model;
 
 import jakarta.persistence.*;
 import thiagoespindula00.jnmodasgestao.emprestimo.dto.EmprestimoRequestDTO;
+import thiagoespindula00.jnmodasgestao.emprestimo.dto.ItemEmprestimoRequestDTO;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -26,7 +27,7 @@ public class Emprestimo {
     @Enumerated(EnumType.STRING)
     private StatusEmprestimo status;
 
-    @OneToMany(mappedBy = "emprestimo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "emprestimo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemEmprestimo> itens;
 
     public Emprestimo() {
@@ -48,7 +49,13 @@ public class Emprestimo {
     }
 
     public void setCampos(EmprestimoRequestDTO emprestimoRequestDTO) {
-
+        this.clienteId = emprestimoRequestDTO.clienteId();
+        this.itens.clear();
+        for (ItemEmprestimoRequestDTO item : emprestimoRequestDTO.itens()) {
+            ItemEmprestimo itemEmprestimo = ItemEmprestimo.fromDto(item);
+            itemEmprestimo.setEmprestimo(this);
+            this.itens.add(itemEmprestimo);
+        }
     }
 
     public Long getId() {
